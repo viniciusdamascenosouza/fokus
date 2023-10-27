@@ -17,6 +17,12 @@ const audioPlay = new Audio("/sons/play.wav");
 const audioPause = new Audio("/sons/pause.mp3");
 const audioTempoFinalizado = new Audio("/sons/beep.mp3");
 
+const imagemOrigemPlayPause = document.querySelector(
+  ".app__card-primary-butto-icon"
+);
+const simboloPlay = new Image("/imagens/play_arrow.png");
+const simboloPause = new Image("/imagens/pause.png");
+
 let tempoDecorridoEmSegundos = 5;
 let intervaloId = null;
 
@@ -84,16 +90,18 @@ startPauseBt.addEventListener("click", iniciarOuPausar);
 function iniciarOuPausar() {
   if (intervaloId) {
     audioPause.play();
-    zerar();
+    simboloPlay.innerHTML = zerar();
     return;
   }
   audioPlay.play();
   intervaloId = setInterval(contagemRegressiva, 1000);
   iniciarOuPausarBt.textContent = "Pausar";
+  imagemOrigemPlayPause.setAttribute("src", "/imagens/pause.png");
 }
 
 function zerar() {
   clearInterval(intervaloId);
   iniciarOuPausarBt.textContent = "Começar";
+  imagemOrigemPlayPause.setAttribute("src", "/imagens/play_arrow.png");
   intervaloId = null;
 }
