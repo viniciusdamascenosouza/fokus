@@ -4,6 +4,7 @@ const focoBt = document.querySelector(".app__card-button--foco");
 const curtoBt = document.querySelector(".app__card-button--curto");
 const longoBt = document.querySelector(".app__card-button--longo");
 const botoes = document.querySelectorAll(".app__card-button");
+const iniciarOuPausarBt = document.querySelector("#start-pause span");
 
 const banner = document.querySelector(".app__image");
 
@@ -69,9 +70,9 @@ function alterarContexto(contexto) {
 
 const contagemRegressiva = () => {
   if (tempoDecorridoEmSegundos <= 0) {
-    audioTempoFinalizado.play();
-    zerar();
+    // audioTempoFinalizado.play();
     alert("Tempo finalizado!");
+    zerar();
     return;
   }
   tempoDecorridoEmSegundos -= 1;
@@ -81,16 +82,18 @@ const contagemRegressiva = () => {
 startPauseBt.addEventListener("click", iniciarOuPausar);
 
 function iniciarOuPausar() {
-  audioPause.play();
   if (intervaloId) {
+    audioPause.play();
     zerar();
     return;
   }
   audioPlay.play();
   intervaloId = setInterval(contagemRegressiva, 1000);
+  iniciarOuPausarBt.textContent = "Pausar";
 }
 
 function zerar() {
   clearInterval(intervaloId);
+  iniciarOuPausarBt.textContent = "Começar";
   intervaloId = null;
 }
