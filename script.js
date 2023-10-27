@@ -86,7 +86,7 @@ function iniciarOuPausar() {
     zerar();
     return;
   }
-  audioPlay();
+  audioPlay.play();
   intervaloId = setInterval(contagemRegressiva, 1000);
 }
 
