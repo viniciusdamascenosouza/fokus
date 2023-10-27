@@ -9,17 +9,18 @@ const banner = document.querySelector(".app__image");
 const titulo = document.querySelector(".app__title");
 
 focoBt.addEventListener("click", () => {
-  html.setAttribute("data-contexto", "foco");
-  banner.setAttribute("src", "./imagens/foco.png");
   alterarContexto("foco");
+  focoBt.classList.add("active");
 });
 
 curtoBt.addEventListener("click", () => {
   alterarContexto("descanso-curto");
+  curtoBt.classList.add("active");
 });
 
 longoBt.addEventListener("click", () => {
   alterarContexto("descanso-longo");
+  longoBt.classList.add("active");
 });
 
 function alterarContexto(contexto) {
