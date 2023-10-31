@@ -23,6 +23,8 @@ const imagemOrigemPlayPause = document.querySelector(
 const simboloPlay = new Image("/imagens/play_arrow.png");
 const simboloPause = new Image("/imagens/pause.png");
 
+const temporizador = document.querySelector("#timer");
+
 let tempoDecorridoEmSegundos = 5;
 let intervaloId = null;
 
@@ -74,17 +76,6 @@ function alterarContexto(contexto) {
   }
 }
 
-const contagemRegressiva = () => {
-  if (tempoDecorridoEmSegundos <= 0) {
-    // audioTempoFinalizado.play();
-    alert("Tempo finalizado!");
-    zerar();
-    return;
-  }
-  tempoDecorridoEmSegundos -= 1;
-  console.log("Temporizador: " + tempoDecorridoEmSegundos);
-};
-
 startPauseBt.addEventListener("click", iniciarOuPausar);
 
 function iniciarOuPausar() {
@@ -105,3 +96,21 @@ function zerar() {
   imagemOrigemPlayPause.setAttribute("src", "/imagens/play_arrow.png");
   intervaloId = null;
 }
+
+const contagemRegressiva = () => {
+  if (tempoDecorridoEmSegundos <= 0) {
+    audioTempoFinalizado.play();
+    // alert("Tempo finalizado!");
+    zerar();
+    return;
+  }
+  tempoDecorridoEmSegundos -= 1;
+  mostraTempo();
+};
+
+function mostraTempo() {
+  const tempo = tempoDecorridoEmSegundos;
+  temporizador.innerHTML = `${tempo}`;
+}
+
+mostraTempo()
