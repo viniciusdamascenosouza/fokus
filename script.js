@@ -11,7 +11,8 @@ const banner = document.querySelector(".app__image");
 const titulo = document.querySelector(".app__title");
 
 const musicaFocoInput = document.querySelector("#alternar-musica");
-const musica = new Audio("/sons/luna-rise-part-one.mp3");
+const musica = new Audio("/sons/classic-song.mp3");
+
 const startPauseBt = document.querySelector("#start-pause");
 const audioPlay = new Audio("/sons/play.wav");
 const audioPause = new Audio("/sons/pause.mp3");
@@ -25,10 +26,10 @@ const simboloPause = new Image("/imagens/pause.png");
 
 const temporizador = document.querySelector("#timer");
 
-let tempoDecorridoEmSegundos = 5;
+let tempoDecorridoEmSegundos = 2400;
 let intervaloId = null;
 
-musica.loop = true;
+// musica.loop = true;
 
 musicaFocoInput.addEventListener("change", () => {
   if (musica.paused) {
@@ -39,21 +40,24 @@ musicaFocoInput.addEventListener("change", () => {
 });
 
 focoBt.addEventListener("click", () => {
+  tempoDecorridoEmSegundos = 2400;
   alterarContexto("foco");
-  focoBt.classList.add("active");
 });
 
 curtoBt.addEventListener("click", () => {
+  tempoDecorridoEmSegundos = 300;
   alterarContexto("descanso-curto");
   curtoBt.classList.add("active");
 });
 
 longoBt.addEventListener("click", () => {
+  tempoDecorridoEmSegundos = 600;
   alterarContexto("descanso-longo");
   longoBt.classList.add("active");
 });
 
 function alterarContexto(contexto) {
+  mostraTempo();
   botoes.forEach(function (contexto) {
     contexto.classList.remove("active");
   });
@@ -109,8 +113,12 @@ const contagemRegressiva = () => {
 };
 
 function mostraTempo() {
-  const tempo = tempoDecorridoEmSegundos;
-  temporizador.innerHTML = `${tempo}`;
+  const tempo = new Date(tempoDecorridoEmSegundos * 1000);
+  const tempoFormatado = tempo.toLocaleString("pt-br", {
+    minute: "2-digit",
+    second: "2-digit",
+  });
+  temporizador.innerHTML = `${tempoFormatado}`;
 }
 
-mostraTempo()
+mostraTempo();
