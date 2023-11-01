@@ -25,15 +25,13 @@ function createTask(tarefa) {
   li.classList.add("app__section-task-list-item");
 
   const svgIcon = document.createElement("svg");
-  svgIcon.InnerHTML = taskIconSvg;
+  svgIcon.innerHTML = taskIconSvg;
 
   const paragraph = document.createElement("p");
   paragraph.classList.add("app__section-task-list-item-description");
 
   paragraph.textContent = tarefa.descricao;
 
-  li.appendChild("svgIcon");
-  li.appendChild("paragraph");
-
-  return li;
+  li.appendChild(svgIcon);
+  li.appendChild(paragraph);
 }
