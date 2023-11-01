@@ -3,17 +3,13 @@ const taskListContainer = document.querySelector(".app__section-task-list");
 const formTask = document.querySelector(".app__form-add-task");
 const toggleFormTaskBtn = document.querySelector(".app__button--add-task");
 const formLabel = document.querySelector(".app__form-label");
+const textArea = document.querySelector(".app__form-textarea");
+const cancelFormTaskBtn = document.querySelector(
+  ".app__form-footer__button--cancel"
+);
+const btnCancelar = document.querySelector(".app__form-footer__button--cancel");
 
-let tarefas = [
-  {
-    descricao: "Tarefa Concluída",
-    concluida: true,
-  },
-  {
-    descricao: "Tarefa Pendente",
-    concluida: false,
-  },
-];
+let tarefas = [];
 
 const taskIconSvg = `
 <svg class="app__section-task-icon-status" width="24" height="24" viewBox="0 0 24 24"
@@ -51,4 +47,19 @@ tarefas.forEach((task) => {
 toggleFormTaskBtn.addEventListener("click", () => {
   formLabel.textContent = "Adicionando tarefa";
   formTask.classList.toggle("hidden");
+});
+
+cancelFormTaskBtn.addEventListener("click", () => {
+  formTask.classList.add("hidden");
+});
+
+formTask.addEventListener("submit", (evento) => {
+  evento.preventDefault();
+  const task = {
+    descricao: textArea.value,
+    concluida: false,
+  };
+  tarefas.push(task);
+  const taskItem = createTask(task);
+  taskListContainer.appendChild(taskItem);
 });
