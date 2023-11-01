@@ -47,3 +47,8 @@ tarefas.forEach((task) => {
   const taskItem = createTask(task);
   taskListContainer.appendChild(taskItem);
 });
+
+toggleFormTaskBtn.addEventListener("click", () => {
+  formLabel.textContent = "Adicionando tarefa";
+  formTask.classList.toggle("hidden");
+});
