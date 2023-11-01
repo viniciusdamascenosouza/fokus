@@ -58,7 +58,7 @@ cancelFormTaskBtn.addEventListener("click", () => {
   formTask.classList.add("hidden");
 });
 
-btnCancelar.addEventListener('click', limparForm)
+btnCancelar.addEventListener("click", limparForm);
 
 formTask.addEventListener("submit", (evento) => {
   evento.preventDefault();
@@ -72,3 +72,8 @@ formTask.addEventListener("submit", (evento) => {
 
   limparForm();
 });
+
+//código omitido
+
+localStorage.setItem('quantidade', 10);
+console.log(localStorage.getItem('quantidade'));
