@@ -1,5 +1,9 @@
 const taskListContainer = document.querySelector(".app__section-task-list");
 
+const formTask = document.querySelector(".app__form-add-task");
+const toggleFormTaskBtn = document.querySelector(".app__button--add-task");
+const formLabel = document.querySelector(".app__form-label");
+
 let tarefas = [
   {
     descricao: "Tarefa Concluída",
