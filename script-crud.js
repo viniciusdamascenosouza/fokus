@@ -73,7 +73,5 @@ formTask.addEventListener("submit", (evento) => {
   limparForm();
 });
 
-//código omitido
-
 localStorage.setItem('quantidade', 10);
 console.log(localStorage.getItem('quantidade'));
