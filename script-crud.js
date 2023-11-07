@@ -73,5 +73,5 @@ formTask.addEventListener("submit", (evento) => {
   limparForm();
 });
 
-localStorage.setItem('quantidade', 10);
-console.log(localStorage.getItem('quantidade'));
+localStorage.setItem("quantidade", 10);
+console.log(localStorage.getItem("quantidade"));
