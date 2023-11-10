@@ -11,7 +11,7 @@ const banner = document.querySelector(".app__image");
 const titulo = document.querySelector(".app__title");
 
 const musicaFocoInput = document.querySelector("#alternar-musica");
-const musica = new Audio("/sons/classic-song.mp3");
+const musica = new Audio("/sons/luna-rise-part-one.mp3");
 
 const startPauseBt = document.querySelector("#start-pause");
 const audioPlay = new Audio("/sons/play.wav");
