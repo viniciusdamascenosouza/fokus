@@ -77,6 +77,9 @@ tarefas.forEach((tarefa) => {
   ulTarefas.append(elementoTarefa);
 });
 
-btnCancelarAdicaoTarefa.addEventListener("click", () => {
+function limpaFormulario() {
+  textarea.value = "";
   formAdicionarTarefa.classList.add("hidden");
-});
+}
+
+btnCancelarAdicaoTarefa.addEventListener("click", limpaFormulario);
