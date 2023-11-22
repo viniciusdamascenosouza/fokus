@@ -57,23 +57,28 @@ function criarElementoTarefa(tarefa) {
   li.append(paragrafo);
   li.append(botao);
 
-  li.onclick = () => {
-    document
-      .querySelectorAll(".app__section-task-list-item-active")
-      .forEach((elemento) => {
-        elemento.classList.remove("app__section-task-list-item-active");
-      });
-    if (tarefaSelecionada == tarefa) {
-      paragrafoDescricaoTarefas.textContent = "";
-      tarefaSelecionada = null;
-      liTarefaSelecionada = null;
-      return;
-    }
-    tarefaSelecionada = tarefa;
-    liTarefaSelecionada = li;
-    paragrafoDescricaoTarefas.textContent = tarefa.descricao;
-    li.classList.add("app__section-task-list-item-active");
-  };
+  if (tarefa.completa) {
+    li.classList.add("app__section-task-list-item-complete");
+    botao.setAttribute("disable", "disable");
+  } else {
+    li.onclick = () => {
+      document
+        .querySelectorAll(".app__section-task-list-item-active")
+        .forEach(elemento => {
+          elemento.classList.remove("app__section-task-list-item-active");
+        });
+      if (tarefaSelecionada == tarefa) {
+        paragrafoDescricaoTarefas.textContent = "";
+        tarefaSelecionada = null;
+        liTarefaSelecionada = null;
+        return;
+      }
+      tarefaSelecionada = tarefa;
+      liTarefaSelecionada = li;
+      paragrafoDescricaoTarefas.textContent = tarefa.descricao;
+      li.classList.add("app__section-task-list-item-active");
+    };
+  }
 
   return li;
 }
@@ -110,9 +115,11 @@ btnCancelarAdicaoTarefa.addEventListener("click", limpaFormulario);
 document.addEventListener("focoFinalizado", () => {
   if (tarefaSelecionada && liTarefaSelecionada) {
     liTarefaSelecionada.classList.remove("app__section-task-list-item-active");
-    liTarefaSelecionada.classList.add("app__section-task-list-item-complete"); 
+    liTarefaSelecionada.classList.add("app__section-task-list-item-complete");
     liTarefaSelecionada
-      .querySelectorAll("button")
+      .querySelector("button")
       .setAttribute("disable", "disable");
+    tarefaSelecionada.completa = true;
+    atualizarTarefas();
   }
 });
