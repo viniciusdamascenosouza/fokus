@@ -26,7 +26,7 @@ const simboloPause = new Image("/imagens/pause.png");
 
 const temporizador = document.querySelector("#timer");
 
-let tempoDecorridoEmSegundos = 2;
+let tempoDecorridoEmSegundos = 2400;
 let intervaloId = null;
 
 // musica.loop = true;
@@ -40,7 +40,7 @@ musicaFocoInput.addEventListener("change", () => {
 });
 
 focoBt.addEventListener("click", () => {
-  tempoDecorridoEmSegundos = 2;
+  tempoDecorridoEmSegundos = 2400;
   alterarContexto("foco");
   focoBt.classList.add("active");
 });
