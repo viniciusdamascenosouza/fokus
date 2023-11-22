@@ -9,6 +9,7 @@ const paragrafoDescricaoTarefas = document.querySelector(
 
 const tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 let tarefaSelecionada = null;
+let liTarefaSelecionada = null;
 
 const btnCancelarAdicaoTarefa = document.querySelector(
   ".app__form-footer__button--cancel"
@@ -65,9 +66,11 @@ function criarElementoTarefa(tarefa) {
     if (tarefaSelecionada == tarefa) {
       paragrafoDescricaoTarefas.textContent = "";
       tarefaSelecionada = null;
+      liTarefaSelecionada = null;
       return;
     }
     tarefaSelecionada = tarefa;
+    liTarefaSelecionada = li;
     paragrafoDescricaoTarefas.textContent = tarefa.descricao;
     li.classList.add("app__section-task-list-item-active");
   };
@@ -103,3 +106,13 @@ function limpaFormulario() {
 }
 
 btnCancelarAdicaoTarefa.addEventListener("click", limpaFormulario);
+
+document.addEventListener("focoFinalizado", () => {
+  if (tarefaSelecionada && liTarefaSelecionada) {
+    liTarefaSelecionada.classList.remove("app__section-task-list-item-active");
+    liTarefaSelecionada.classList.add("app__section-task-list-item-complete"); 
+    liTarefaSelecionada
+      .querySelectorAll("button")
+      .setAttribute("disable", "disable");
+  }
+});
