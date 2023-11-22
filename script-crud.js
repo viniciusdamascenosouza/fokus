@@ -7,7 +7,10 @@ const paragrafoDescricaoTarefas = document.querySelector(
   ".app__section-active-task-description"
 );
 
-const tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+const btnRemoverConcluidas = document.querySelector("#btn-remover-concluidas");
+const btnRemoverTodasTarefas = document.querySelector("#btn-remover-todas");
+
+let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 let tarefaSelecionada = null;
 let liTarefaSelecionada = null;
 
@@ -123,3 +126,19 @@ document.addEventListener("focoFinalizado", () => {
     atualizarTarefas();
   }
 });
+
+btnRemoverConcluidas.onclick = () => {
+  const seletor = ".app__section-task-list-item-complete";
+  document.querySelectorAll(seletor).forEach(elemento => {
+    elemento.remove();
+  });
+  tarefas = tarefas.filter((tarefa) => !tarefa.completa);
+  atualizarTarefas();
+};
+btnRemoverTodasTarefas.onclick = () => {
+  const seletorTwo = ".app__section-task-item-active";
+  document.querySelectorAll(seletorTwo).forEach(elemento => {
+    elemento.remove();
+  })
+
+}
